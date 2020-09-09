@@ -1,10 +1,10 @@
 ---
-date: '2018-04-01'
-title: 'Studio Developer'
-company: 'Scout'
-location: 'Northeastern University'
-range: 'Jan - April 2018'
-url: 'https://web.northeastern.edu/scout/'
+date: '2019-04-01'
+title: 'Workday Integrations Sr. Analyst'
+company: 'Accenture'
+location: 'New York, NY'
+range: 'March - September 2019'
+url: 'https://accenture.com/'
 ---
 
 - Worked with a team of three designers to build a marketing website and e-commerce platform for [blistabloc](https://blistabloc.com), an ambitious startup originating from Northeastern
