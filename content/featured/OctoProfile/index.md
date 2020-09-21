@@ -1,13 +1,13 @@
 ---
 date: '3'
-title: 'OctoProfile'
+title: '123 Grow With Me'
 cover: './octoprofile.png'
 github: 'https://github.com/bchiang7/octoprofile'
-external: 'https://octoprofile.now.sh'
+external: 'https://123growwith.me'
 tech:
-  - Next.js
-  - Chart.js
-  - GitHub API
+  - Wordpress
+  - Divi
+  - Javascript
 showInProjects: true
 ---
 
