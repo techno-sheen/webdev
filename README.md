@@ -5,18 +5,10 @@
   technosheen.com - v1
 </h1>
 <p align="center">
-  The first iteration of <a href="https://technosheen.com" target="_blank">technosheen.com</a>.technosheen.com built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby</a> and hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>. Based off Brittany Chiang's code and design, <a href="https://brittanychiang.com" target="_blank">brittanychiang.com</a>.
+  The first iteration of <a href="https://technosheen.com" target="_blank">technosheen.com</a>.technosheen.com built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby</a> and hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>. Based off <a href="https://brittanychiang.com" target="_blank">Brittany Chiang's</a> code and design, if you would like to fork this code, please be sure to give her proper attribution.</br>
+  <img src="https://api.netlify.com/api/v1/badges/1d727235-f628-4932-a165-36dee2574731/deploy-status" href="https://app.netlify.com/sites/technosheen/deploys>
 </p>
-<p align="center"><img src="https://api.netlify.com/api/v1/badges/1d727235-f628-4932-a165-36dee2574731/deploy-status" href="https://app.netlify.com/sites/technosheen/deploys>)
-  </p>
 
-## 🚨 Forking this repo (please read!)
-
-Many people have contacted me asking me if they can use this code for their own website, and the answer to that question is usually **yes, with attribution**.
-
-I value keeping my site open source, but as you all know, _**plagiarism is bad**_. It's always disheartening whenever I find that someone has copied my site without giving me credit. I spent a non-trivial amount of effort building and designing this iteration of my website, and I am proud of it! All I ask of you all is to not claim this effort as your own.
-
-Please also note that I did not build this site with the intention of it being a starter theme, so if you have questions about implementation, please refer to the [Gatsby docs](https://www.gatsbyjs.org/docs/).
 
 ### TL;DR
 
