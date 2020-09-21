@@ -9,7 +9,7 @@
 </p>
 <p align="center">[![Netlify Status](https://api.netlify.com/api/v1/badges/1d727235-f628-4932-a165-36dee2574731/deploy-status)](https://app.netlify.com/sites/technosheen/deploys)
 </p>
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1d727235-f628-4932-a165-36dee2574731/deploy-status)](https://app.netlify.com/sites/technosheen/deploys)
 ![demo](https://raw.githubusercontent.com/bchiang7/v4/main/src/images/demo.png)
 
 ## 🚨 Forking this repo (please read!)
