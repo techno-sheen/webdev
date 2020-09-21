@@ -3,66 +3,74 @@ import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { throttle } from '@utils';
+import { throttle, loaderDelay } from '@utils';
 import { navLinks, navHeight } from '@config';
 import { Menu } from '@components';
 import { IconLogo } from '@components/icons';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
-const { colors, fontSizes, fonts, loaderDelay } = theme;
 
 const StyledContainer = styled.header`
-  ${mixins.flexBetween};
+  ${({ theme }) => theme.mixins.flexBetween};
   position: fixed;
   top: 0;
   padding: 0px 50px;
-  background-color: ${colors.navy};
-  transition: ${theme.transition};
+  background-color: ${({ theme }) => theme.colors.navy};
+  transition: ${({ theme }) => theme.transition};
   z-index: 11;
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
   width: 100%;
-  height: ${props => (props.scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight)};
-  box-shadow: ${props =>
-    props.scrollDirection === 'up' ? `0 10px 30px -10px ${colors.shadowNavy}` : 'none'};
+  height: ${({ theme, scrollDirection }) =>
+    scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight};
+  box-shadow: ${({ theme, scrollDirection }) =>
+    scrollDirection === 'up' ? `0 10px 30px -10px ${theme.colors.shadowNavy}` : 'none'};
   transform: translateY(
-    ${props => (props.scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px')}
+    ${({ theme, scrollDirection }) =>
+    scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px'}
   );
-  ${media.desktop`padding: 0 40px;`};
-  ${media.tablet`padding: 0 25px;`};
+
+  @media (${({ theme }) => theme.bp.desktopS}) {
+    padding: 0 40px;
+  }
+  @media (${({ theme }) => theme.bp.tabletL}) {
+    padding: 0 25px;
+  }
 `;
 const StyledNav = styled.nav`
-  ${mixins.flexBetween};
+  ${({ theme }) => theme.mixins.flexBetween};
   position: relative;
   width: 100%;
-  color: ${colors.lightestSlate};
-  font-family: ${fonts.SFMono};
+  color: ${({ theme }) => theme.colors.lightestSlate};
+  font-family: ${({ theme }) => theme.fonts.SFMono};
   counter-reset: item 0;
   z-index: 12;
 `;
 const StyledLogo = styled.div`
-  ${mixins.flexCenter};
+  ${({ theme }) => theme.mixins.flexCenter};
+
   a {
     display: block;
-    color: ${colors.green};
+    color: ${({ theme }) => theme.colors.green};
     width: 42px;
     height: 42px;
+
     &:hover,
     &:focus {
       svg {
-        fill: ${colors.transGreen};
+        fill: ${({ theme }) => theme.colors.transGreen};
       }
     }
+
     svg {
       fill: none;
-      transition: ${theme.transition};
+      transition: ${({ theme }) => theme.transition};
       user-select: none;
     }
   }
 `;
 const StyledHamburger = styled.div`
-  ${mixins.flexCenter};
+  ${({ theme }) => theme.mixins.flexCenter};
   overflow: visible;
   margin: 0 -12px 0 0;
   padding: 15px;
@@ -75,20 +83,23 @@ const StyledHamburger = styled.div`
   border: 0;
   background-color: transparent;
   display: none;
-  ${media.tablet`display: flex;`};
+
+  @media (${({ theme }) => theme.bp.tabletL}) {
+    display: flex;
+  }
 `;
 const StyledHamburgerBox = styled.div`
   position: relative;
   display: inline-block;
-  width: ${theme.hamburgerWidth}px;
+  width: ${({ theme }) => theme.hamburgerWidth};
   height: 24px;
 `;
 const StyledHamburgerInner = styled.div`
-  background-color: ${colors.green};
+  background-color: ${({ theme }) => theme.colors.green};
   position: absolute;
-  width: ${theme.hamburgerWidth}px;
+  width: ${({ theme }) => theme.hamburgerWidth};
   height: 2px;
-  border-radius: ${theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   top: 50%;
   left: 0;
   right: 0;
@@ -103,37 +114,39 @@ const StyledHamburgerInner = styled.div`
   &:after {
     content: '';
     display: block;
-    background-color: ${colors.green};
     position: absolute;
     left: auto;
     right: 0;
-    width: ${theme.hamburgerWidth}px;
+    width: ${({ theme }) => theme.hamburgerWidth};
     height: 2px;
     transition-timing-function: ease;
     transition-duration: 0.15s;
     transition-property: transform;
+    background-color: ${({ theme }) => theme.colors.green};
     border-radius: 4px;
   }
   &:before {
     width: ${props => (props.menuOpen ? `100%` : `120%`)};
     top: ${props => (props.menuOpen ? `0` : `-10px`)};
     opacity: ${props => (props.menuOpen ? 0 : 1)};
-    transition: ${props => (props.menuOpen ? theme.hamBeforeActive : theme.hamBefore)};
+    transition: ${props => (props.menuOpen ? props.theme.hamBeforeActive : props.theme.hamBefore)};
   }
   &:after {
     width: ${props => (props.menuOpen ? `100%` : `80%`)};
     bottom: ${props => (props.menuOpen ? `0` : `-10px`)};
     transform: rotate(${props => (props.menuOpen ? `-90deg` : `0`)});
-    transition: ${props => (props.menuOpen ? theme.hamAfterActive : theme.hamAfter)};
+    transition: ${props => (props.menuOpen ? props.theme.hamAfterActive : props.theme.hamAfter)};
   }
 `;
 const StyledLink = styled.div`
   display: flex;
   align-items: center;
-  ${media.tablet`display: none;`};
+  @media (${({ theme }) => theme.bp.tabletL}) {
+    display: none;
+  }
 `;
 const StyledList = styled.ol`
-  ${mixins.flexBetween};
+  ${({ theme }) => theme.mixins.flexBetween};
   padding: 0;
   margin: 0;
   list-style: none;
@@ -141,22 +154,23 @@ const StyledList = styled.ol`
 const StyledListItem = styled.li`
   margin: 0 10px;
   position: relative;
-  font-size: ${fontSizes.smish};
+  font-size: ${({ theme }) => theme.fontSizes.smish};
   counter-increment: item 1;
+
   &:before {
     content: '0' counter(item) '.';
     text-align: right;
-    color: ${colors.green};
-    font-size: ${fontSizes.xs};
+    color: ${({ theme }) => theme.colors.green};
+    font-size: ${({ theme }) => theme.fontSizes.xs};
   }
 `;
 const StyledListLink = styled(Link)`
   padding: 12px 10px;
 `;
 const StyledResumeButton = styled.a`
-  ${mixins.smallButton};
+  ${({ theme }) => theme.mixins.smallButton};
   margin-left: 10px;
-  font-size: ${fontSizes.smish};
+  font-size: ${({ theme }) => theme.fontSizes.smish};
 `;
 
 const DELTA = 5;

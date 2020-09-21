@@ -2,57 +2,79 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { email } from '@config';
+import { navDelay, loaderDelay } from '@utils';
 import styled from 'styled-components';
-import { theme, mixins, media, Section } from '@styles';
-const { colors, fontSizes, fonts, navDelay, loaderDelay } = theme;
+import { Section } from '@styles';
 
 const StyledContainer = styled(Section)`
-  ${mixins.flexCenter};
+  ${({ theme }) => theme.mixins.flexCenter};
   flex-direction: column;
   align-items: flex-start;
   min-height: 100vh;
-  ${media.tablet`padding-top: 150px;`};
+  @media (${({ theme }) => theme.bp.tabletL}) {
+    padding-top: 150px;
+  }
   div {
     width: 100%;
   }
 `;
 const StyledOverline = styled.h1`
-  color: ${colors.green};
+  color: ${({ theme }) => theme.colors.green};
   margin: 0 0 20px 3px;
-  font-size: ${fontSizes.md};
-  font-family: ${fonts.SFMono};
-  font-weight: normal;
-  ${media.desktop`font-size: ${fontSizes.sm};`};
-  ${media.tablet`font-size: ${fontSizes.smish};`};
+  font-size: ${({ theme }) => theme.fontSizes.md};
+  font-family: ${({ theme }) => theme.fonts.SFMono};
+  font-weight: 400;
+  @media (${({ theme }) => theme.bp.desktopS}) {
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+  }
+  @media (${({ theme }) => theme.bp.tabletL}) {
+    font-size: ${({ theme }) => theme.fontSizes.smish};
+  }
 `;
 const StyledTitle = styled.h2`
   font-size: 80px;
   line-height: 1.1;
   margin: 0;
-  ${media.desktop`font-size: 70px;`};
-  ${media.tablet`font-size: 60px;`};
-  ${media.phablet`font-size: 50px;`};
-  ${media.phone`font-size: 40px;`};
+  @media (${({ theme }) => theme.bp.desktopS}) {
+    font-size: 70px;
+  }
+  @media (${({ theme }) => theme.bp.tabletL}) {
+    font-size: 60px;
+  }
+  @media (${({ theme }) => theme.bp.mobileL}) {
+    font-size: 50px;
+  }
+  @media (${({ theme }) => theme.bp.mobileM}) {
+    font-size: 40px;
+  }
 `;
 const StyledSubtitle = styled.h3`
   font-size: 80px;
   line-height: 1.1;
-  color: ${colors.slate};
-  ${media.desktop`font-size: 70px;`};
-  ${media.tablet`font-size: 60px;`};
-  ${media.phablet`font-size: 50px;`};
-  ${media.phone`font-size: 40px;`};
+  color: ${({ theme }) => theme.colors.slate};
+  @media (${({ theme }) => theme.bp.desktopS}) {
+    font-size: 70px;
+  }
+  @media (${({ theme }) => theme.bp.tabletL}) {
+    font-size: 60px;
+  }
+  @media (${({ theme }) => theme.bp.mobileL}) {
+    font-size: 50px;
+  }
+  @media (${({ theme }) => theme.bp.mobileM}) {
+    font-size: 40px;
+  }
 `;
 const StyledDescription = styled.div`
   margin-top: 25px;
   width: 50%;
   max-width: 500px;
   a {
-    ${mixins.inlineLink};
+    ${({ theme }) => theme.mixins.inlineLink};
   }
 `;
 const StyledEmailLink = styled.a`
-  ${mixins.bigButton};
+  ${({ theme }) => theme.mixins.bigButton};
   margin-top: 50px;
 `;
 
