@@ -7,7 +7,8 @@
 <p align="center">
   The first iteration of <a href="https://technosheen.com" target="_blank">technosheen.com</a>.technosheen.com built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby</a> and hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>. Based off Brittany Chiang's code and design, <a href="https://brittanychiang.com" target="_blank">brittanychiang.com</a>.
 </p>
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1d727235-f628-4932-a165-36dee2574731/deploy-status)](https://app.netlify.com/sites/technosheen/deploys)
+<p align="center">[![Netlify Status](https://api.netlify.com/api/v1/badges/1d727235-f628-4932-a165-36dee2574731/deploy-status)](https://app.netlify.com/sites/technosheen/deploys)
+</p>
 
 ![demo](https://raw.githubusercontent.com/bchiang7/v4/main/src/images/demo.png)
 
